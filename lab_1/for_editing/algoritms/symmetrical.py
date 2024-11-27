@@ -34,7 +34,7 @@ class TripleDES:
     def __init__(self):
         pass
 
-    def generation_key(key_size: int) -> bytes:
+    def generate_key(key_size: int) -> bytes:
         """The funtion lets the user to choose length of key and generates a key
         Args:
             key_size(int): size of the key

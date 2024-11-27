@@ -20,9 +20,9 @@ def main():
                 if key not in [64, 128, 192]:
                     print("Try again. You've entered wrong length.")
                     key = int(input("Enter your key length (64, 128 or 192): "))
-            symmetric_key = TripleDES.generation_key(key)
+            symmetric_key = TripleDES.generate_key(key)
             Io.serialize_symmetric_key(symmetric_key, setting["symmetric_key"])
-            public_key, private_key = RSA.key_generation()
+            public_key, private_key = RSA.generate_key()
             Io.serialize_public_key(setting["public_key"], public_key)
             Io.serialize_private_key(setting["private_key"], private_key)
         case "encrypt":

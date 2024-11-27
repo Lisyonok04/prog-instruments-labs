@@ -33,7 +33,7 @@ class RSA:
     def __init__(self):
         pass
 
-    def key_generation() -> tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]:
+    def generate_key() -> tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]:
         """The function generates asymmetric keys (public and private)
 
         Returns:
