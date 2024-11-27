@@ -1,3 +1,8 @@
+"""
+This module contains functionality for working with symmetric encryption
+(key generation, encryption, decryption)
+"""
+
 import os
 import logging
 
@@ -19,7 +24,7 @@ class TripleDES:
         None
 
     Methods:
-        generation_key(key_size: int) -> bytes:
+        generate_key(key_size: int) -> bytes:
         Generate a key for TripleDES
         encrypt(
             text_path: str, path_to_key: str, path_to_encrypted: str
@@ -35,12 +40,14 @@ class TripleDES:
         pass
 
     def generate_key(key_size: int) -> bytes:
+
         """The funtion lets the user to choose length of key and generates a key
         Args:
             key_size(int): size of the key
         Returns:
             bytes: The generated key for triple DES
         """
+
         try:
             if key_size not in [64, 128, 192]:
                 raise ValueError("Invalid key length. Please enter 64, 128, or 192.")
@@ -54,6 +61,7 @@ class TripleDES:
         path_to_key: str,
         path_to_encrypted: str,
     ) -> bytes:
+        
         """The function encrypts text by symmetric key
 
         Args:
@@ -64,6 +72,7 @@ class TripleDES:
         Returns:
             bytes: encrypted text
         """
+
         text = Io.read_txt(text)
         symmetric_key = Io.deserialize_symmetric_key(path_to_key)
         cipher = Cipher(
@@ -83,6 +92,7 @@ class TripleDES:
         path_to_encrypted: str,
         path_to_decrypted: str,
     ) -> str:
+        
         """The function encrypts text by symmetric key
 
         Args:
@@ -93,6 +103,7 @@ class TripleDES:
         Returns:
             str: decrypted text
         """
+        
         encrypted = Io.read_bytes(path_to_encrypted)
         symmetric_key = Io.deserialize_symmetric_key(symmetric)
         cipher = Cipher(

@@ -1,3 +1,8 @@
+"""
+This module contains functionality for working with asymmetric encryption
+(key generation, encryption, decryption)
+"""
+
 import logging
 
 from cryptography.hazmat.primitives import hashes
@@ -19,7 +24,7 @@ class RSA:
         None
 
     Methods:
-        key_generation() -> tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]: 
+        generate_key() -> tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]: 
         Generats keys for RSA
         encrypt(
             public: str, path_to_key: str, path_for_encripted: str
@@ -34,11 +39,13 @@ class RSA:
         pass
 
     def generate_key() -> tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]:
+
         """The function generates asymmetric keys (public and private)
 
         Returns:
             tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]: public and private keys
         """
+
         key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
         logging.info("Asymmetric keys have been generated")
         return key.public_key(), key
@@ -48,6 +55,7 @@ class RSA:
         path_to_key: str,
         path_to_encripted: str
     ) -> None:
+        
         """The function encripts symmetric key by asymmetric public key
 
         Args:
@@ -55,6 +63,7 @@ class RSA:
             path_to_key(str): path to symmetric key
             path_for_encripted(str): path to save encripted symmetric key
         """
+
         symmetric_key = Io.deserialize_symmetric_key(path_to_key)
         public_key = Io.deserialize_public_key(public)
         encripted_key = public_key.encrypt(
@@ -72,6 +81,7 @@ class RSA:
         path_to_encripted: str,
         path_to_decripted: str
     ) -> bytes:
+        
         """The function decripts symmetric key by asymmetric private key
 
         Args:
@@ -82,6 +92,7 @@ class RSA:
         Returns:
             bytes: decrypted key
         """
+        
         symmetric_encripted = Io.deserialize_symmetric_key(path_to_encripted)
         private_key = Io.deserialize_private_key(private)
         decripted_key = private_key.decrypt(

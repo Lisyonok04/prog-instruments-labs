@@ -1,3 +1,8 @@
+"""
+This module contains main functionality of the program: key generation, 
+text encryption and decryption
+"""
+
 import os
 import argparse
 
