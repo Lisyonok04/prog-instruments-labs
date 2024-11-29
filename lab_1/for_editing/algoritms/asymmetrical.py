@@ -9,6 +9,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
 
+from algoritms.constants import PRIVATE_PUBLIC_EXPONENT, PRIVATE_KEY_SIZE
 from algoritms.files import Io
 
 
@@ -46,7 +47,7 @@ class RSA:
             tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey] : public and private keys
         """
 
-        key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+        key = rsa.generate_private_key(PRIVATE_PUBLIC_EXPONENT, PRIVATE_KEY_SIZE)
         logging.info("Asymmetric keys have been generated")
         return key.public_key(), key
 

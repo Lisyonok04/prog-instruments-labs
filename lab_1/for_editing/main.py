@@ -6,6 +6,7 @@ text encryption and decryption
 import os
 import argparse
 
+from algoritms.constants import LENGTH_FIRST, LENGTH_SECOND, LENGTH_THIRD
 from algoritms.asymmetrical import RSA
 from algoritms.files import Io
 from algoritms.symmetrical import TripleDES
@@ -21,8 +22,8 @@ def main():
     match args.mode:
         case "generate_key":
             key = int(input("Enter your key length (64, 128 or 192): "))
-            while key not in [64, 128, 192]:
-                if key not in [64, 128, 192]:
+            while key not in [LENGTH_FIRST, LENGTH_SECOND, LENGTH_THIRD]:
+                if key not in [LENGTH_FIRST, LENGTH_SECOND, LENGTH_THIRD]:
                     print("Try again. You've entered wrong length.")
                     key = int(input("Enter your key length (64, 128 or 192): "))
             symmetric_key = TripleDES.generate_key(key)
@@ -58,5 +59,4 @@ def main():
             )
 
 if __name__ == "__main__":
-    main()
- 
+     main()

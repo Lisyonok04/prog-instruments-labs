@@ -10,6 +10,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import padding
 
+from algoritms.constants import LENGTH_FIRST, LENGTH_SECOND, LENGTH_THIRD, DIVIDER
 from algoritms.files import Io
 
 logger = logging.getLogger()
@@ -49,10 +50,10 @@ class TripleDES:
         """
 
         try:
-            if key_size not in [64, 128, 192]:
+            if key_size not in [LENGTH_FIRST, LENGTH_SECOND, LENGTH_THIRD]:
                 raise ValueError("Invalid key length. Please enter 64, 128, or 192.")
             logging.info("Symmetric keys have been generated")
-            return os.urandom(key_size // 8)
+            return os.urandom(key_size // DIVIDER)
         except ValueError as e:
             print("Invalid input.")
 
