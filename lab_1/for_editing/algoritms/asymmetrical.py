@@ -43,7 +43,7 @@ class RSA:
         """The function generates asymmetric keys (public and private)
 
         Returns:
-            tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey]: public and private keys
+            tuple[rsa.RSAPublicKey, rsa.RSAPrivateKey] : public and private keys
         """
 
         key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
@@ -51,17 +51,17 @@ class RSA:
         return key.public_key(), key
 
     def encrypt(
-        public: str,
-        path_to_key: str,
-        path_to_encripted: str
+        public            : str,
+        path_to_key       : str,
+        path_to_encripted : str
     ) -> None:
         
         """The function encripts symmetric key by asymmetric public key
 
         Args:
-            public(str): path to public asymmetric key
-            path_to_key(str): path to symmetric key
-            path_for_encripted(str): path to save encripted symmetric key
+            public(str)             : path to public asymmetric key
+            path_to_key(str)        : path to symmetric key
+            path_for_encripted(str) : path to save encripted symmetric key
         """
 
         symmetric_key = Io.deserialize_symmetric_key(path_to_key)
@@ -77,22 +77,22 @@ class RSA:
         Io.write_bytes(path_to_encripted, encripted_key)
 
     def decrypt(
-        private: str,
-        path_to_encripted: str,
-        path_to_decripted: str
+        private           : str,
+        path_to_encripted : str,
+        path_to_decripted : str
     ) -> bytes:
         
         """The function decripts symmetric key by asymmetric private key
 
         Args:
-            private(str): path to private asymmetric key
-            path_to_encripted(str): path to encrypted symmetric key
-            path_to_decripted(str): path to decrypted symmetric key
+            private(str)           : path to private asymmetric key
+            path_to_encripted(str) : path to encrypted symmetric key
+            path_to_decripted(str) : path to decrypted symmetric key
 
         Returns:
-            bytes: decrypted key
+            bytes : decrypted key
         """
-        
+
         symmetric_encripted = Io.deserialize_symmetric_key(path_to_encripted)
         private_key = Io.deserialize_private_key(private)
         decripted_key = private_key.decrypt(

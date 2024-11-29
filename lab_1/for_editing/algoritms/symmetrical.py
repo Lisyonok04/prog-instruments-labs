@@ -39,13 +39,13 @@ class TripleDES:
     def __init__(self):
         pass
 
-    def generate_key(key_size: int) -> bytes:
+    def generate_key(key_size : int) -> bytes:
 
         """The funtion lets the user to choose length of key and generates a key
         Args:
-            key_size(int): size of the key
+            key_size(int) : size of the key
         Returns:
-            bytes: The generated key for triple DES
+            bytes : The generated key for triple DES
         """
 
         try:
@@ -57,20 +57,20 @@ class TripleDES:
             print("Invalid input.")
 
     def encrypt(
-        text: str,
-        path_to_key: str,
-        path_to_encrypted: str,
+        text              : str,
+        path_to_key       : str,
+        path_to_encrypted : str,
     ) -> bytes:
         
         """The function encrypts text by symmetric key
 
         Args:
-            text(str): path to origin text
-            path_to_key(str): path to symmetric key
-            path_to_encrypted(str): path to save encrypted text
+            text(str)              : path to origin text
+            path_to_key(str)       : path to symmetric key
+            path_to_encrypted(str) : path to save encrypted text
 
         Returns:
-            bytes: encrypted text
+            bytes : encrypted text
         """
 
         text = Io.read_txt(text)
@@ -88,22 +88,22 @@ class TripleDES:
         return encrypted
 
     def decrypt(
-        symmetric: str,
-        path_to_encrypted: str,
-        path_to_decrypted: str,
+        symmetric         : str,
+        path_to_encrypted : str,
+        path_to_decrypted : str,
     ) -> str:
         
         """The function encrypts text by symmetric key
 
         Args:
-            symmetric(str): path to symmetric key
-            path_to_encripted(str): path to encrypted text
-            path_to_decripted(str): path to decrypted text
+            symmetric(str)         : path to symmetric key
+            path_to_encripted(str) : path to encrypted text
+            path_to_decripted(str) : path to decrypted text
 
         Returns:
-            str: decrypted text
+            str : decrypted text
         """
-        
+
         encrypted = Io.read_bytes(path_to_encrypted)
         symmetric_key = Io.deserialize_symmetric_key(symmetric)
         cipher = Cipher(
