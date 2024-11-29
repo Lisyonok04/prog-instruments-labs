@@ -70,9 +70,9 @@ class RSA:
         encripted_key = public_key.encrypt(
             symmetric_key,
             padding.OAEP(
-                mgf=padding.MGF1(algorithm=hashes.SHA256()),
-                algorithm=hashes.SHA256(),
-                label=None,
+                mgf = padding.MGF1(algorithm = hashes.SHA256()),
+                algorithm = hashes.SHA256(),
+                label = None,
             ),
         )
         Io.write_bytes(path_to_encripted, encripted_key)
@@ -99,9 +99,9 @@ class RSA:
         decripted_key = private_key.decrypt(
             symmetric_encripted,
             padding.OAEP(
-                mgf=padding.MGF1(algorithm=hashes.SHA256()),
-                algorithm=hashes.SHA256(),
-                label=None,
+                mgf = padding.MGF1(algorithm = hashes.SHA256()),
+                algorithm = hashes.SHA256(),
+                label = None,
             ),
         )
         Io.serialize_symmetric_key(decripted_key, path_to_decripted)

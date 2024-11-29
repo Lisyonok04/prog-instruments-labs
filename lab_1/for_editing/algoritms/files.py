@@ -194,9 +194,9 @@ class Io:
             with open(private_pem, "wb") as private_out:
                 private_out.write(
                     private_key.private_bytes(
-                        encoding=serialization.Encoding.PEM,
-                        format=serialization.PrivateFormat.TraditionalOpenSSL,
-                        encryption_algorithm=serialization.NoEncryption(),
+                        encoding = serialization.Encoding.PEM,
+                        format = serialization.PrivateFormat.TraditionalOpenSSL,
+                        encryption_algorithm = serialization.NoEncryption(),
                     )
                 )
         except Exception as e:
@@ -232,7 +232,7 @@ class Io:
                 private_bytes = pem_in.read()
             return load_pem_private_key(
                 private_bytes,
-                password=None,
+                password = None,
             )
         except Exception as e:
             logging.error(f'Error while deserialization the key: {e}')
