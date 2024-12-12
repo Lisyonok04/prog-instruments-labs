@@ -62,7 +62,7 @@ def get_invalid(patterns: dict[str, str], data: list) -> list[int]:
     """
     
     invalid_indexes = []
-    for index, value in enumerate(data):
+    for index, value in enumerate(data[1:]):
         if not regular_check(value, patterns):
             invalid_indexes.append(index)
     return invalid_indexes
