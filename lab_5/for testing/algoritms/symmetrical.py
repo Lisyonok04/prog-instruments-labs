@@ -41,13 +41,13 @@ class TripleDES:
         Returns:
             bytes: The generated key for triple DES
         """
-        try:
-            if key_size not in [64, 128, 192]:
-                raise ValueError("Invalid key length. Please enter 64, 128, or 192.")
-            logging.info("Symmetric keys have been generated")
-            return os.urandom(key_size // 8)
-        except ValueError as e:
-            print("Invalid input.")
+        # try:
+        if key_size not in {64, 128, 192}:
+            raise ValueError("Invalid key length. Please enter 64, 128, or 192.")
+        logging.info("Symmetric keys have been generated")
+        return os.urandom(key_size // 8)
+        # except ValueError as e:
+        #     print("Invalid input.")
 
     def encrypt(
         text: str,
