@@ -21,7 +21,7 @@ def test_symmetric_key_generation_invalid(invalid_key_size):
 
 def test_symmetric_key_serialization():
     key = TripleDES.generation_key(64)
-    simmetric_key_path = "keys/symmetric/symmetric.txt"
+    simmetric_key_path = "test_symmetric.txt"
     Io.serialize_symmetric_key(key, simmetric_key_path)
     assert os.path.exists(simmetric_key_path)
     os.remove(simmetric_key_path)
