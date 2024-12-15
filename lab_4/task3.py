@@ -3,11 +3,12 @@ import shutil
 import csv
 import random
 import logging
+
 from typing import List
 
-# Настройка логирования
+
 logging.basicConfig(
-    filename="app.log",
+    filename="logging.txt",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -40,9 +41,9 @@ def copy_images(old_dir: str, new_dir: str, name: str) -> None:
                     ]
                 )
             count += 1
-        logging.info(f"Файлы класса {name} скопированы в dataset3")
+        logging.info(f"The files of the {name} class have been copied to dataset3")
     except Exception as e:
-        logging.error(f"Ошибка при копировании файлов класса {name}: {e}")
+        logging.error(f"Error copying files of the {name} class: {e}")
 
 
 def creating_csvfile(namecsv: str) -> None:
@@ -54,9 +55,9 @@ def creating_csvfile(namecsv: str) -> None:
         with open("Annotasion3.csv", "w", newline="") as f:
             filewriter = csv.writer(f, delimiter=" ", lineterminator="\r")
             filewriter.writerow(["Absolute path", "Relative path", "Class name"])
-        logging.info("Заголовок Annotasion3.csv создан")
+        logging.info("The Annotasion3.csv header has been created")
     except Exception as e:
-        logging.error(f"Ошибка при создании заголовка Annotasion3.csv: {e}")
+        logging.error(f"Error creating the Annotasion3.csv header: {e}")
 
 
 if __name__ == "__main__":
@@ -65,4 +66,4 @@ if __name__ == "__main__":
         copy_images("dataset", "dataset3", "tulip")
         copy_images("dataset", "dataset3", "rose")
     except Exception as e:
-        logging.error(f"Ошибка при выполнении основного кода: {e}")
+        logging.error(f"Error when executing the main code: {e}")

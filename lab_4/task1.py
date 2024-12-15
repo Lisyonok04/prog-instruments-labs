@@ -1,10 +1,12 @@
 import csv
 import os
 import logging
+
 from typing import List
 
+
 logging.basicConfig(
-    filename="app.log",
+    filename="logging.txt",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -28,9 +30,9 @@ def write_in_file(name_class: str, number: int) -> None:
                  create_relative_way(name_class, number),
                  name_class]
             )
-        logging.info(f"Запись добавлена в Annotasion.csv: {name_class} - {number}")
+        logging.info(f"The entry has been added to the Annotation.csv: {name_class} - {number}")
     except Exception as e:
-        logging.error(f"Ошибка при записи в Annotasion.csv: {e}")
+        logging.error(f"Error writing to Annotation.csv: {e}")
 
 
 def create_csv(namecsv: str) -> None:
@@ -47,9 +49,9 @@ def create_csv(namecsv: str) -> None:
         with open("Annotasion.csv", "w", newline='') as file:
             printer = csv.writer(file, delimiter=" ", lineterminator="\r")
             printer.writerow(["The Absolute Way", "Relative Way", "Class name"])
-        logging.info("Заголовок Annotasion.csv создан")
+        logging.info("The Annotation.csv header has been created")
     except Exception as e:
-        logging.error(f"Ошибка при создании заголовка Annotasion.csv: {e}")
+        logging.error(f"Error creating Annotation.csv header: {e}")
 
     for i in range(0, 2000):
         name_class = "tulip"
@@ -74,4 +76,4 @@ if __name__ == "__main__":
     try:
         create_csv("dataset")
     except Exception as e:
-        logging.error(f"Ошибка при выполнении create_csv: {e}")
+        logging.error(f"Error when executing create_csv: {e}")

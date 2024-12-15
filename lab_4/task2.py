@@ -2,11 +2,12 @@ import csv
 import shutil
 import os
 import logging
+
 from typing import List
 
-# Настройка логирования
+
 logging.basicConfig(
-    filename="app.log",
+    filename="logging.txt",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -30,9 +31,9 @@ def copy_in_file(old: str, new: str, name: str) -> None:
                         name,
                     ]
                 )
-        logging.info(f"Файлы класса {name} скопированы в dataset2")
+        logging.info(f"The files of the {name} class are copied to dataset2")
     except Exception as e:
-        logging.error(f"Ошибка при копировании файлов класса {name}: {e}")
+        logging.error(f"Error copying class files {name}: {e}")
 
 
 def creating_csvfile(namecsv: str) -> None:
@@ -44,9 +45,9 @@ def creating_csvfile(namecsv: str) -> None:
         with open("Annotasion2.csv", "w", newline="") as f:
             filewriter = csv.writer(f, delimiter=" ", lineterminator="\r")
             filewriter.writerow(["Absolute path", "Relative path", "Class name"])
-        logging.info("Заголовок Annotasion2.csv создан")
+        logging.info("The Annotasion2.csv header has been created")
     except Exception as e:
-        logging.error(f"Ошибка при создании заголовка Annotasion2.csv: {e}")
+        logging.error(f"Error creating the Annotasion2.csv header: {e}")
 
 
 def create_another_relative_way(name_class: str, number: int) -> str:
@@ -59,4 +60,4 @@ if __name__ == "__main__":
         copy_in_file("dataset", "dataset2", "tulip")
         copy_in_file("dataset", "dataset2", "rose")
     except Exception as e:
-        logging.error(f"Ошибка при выполнении основного кода: {e}")
+        logging.error(f"Error when executing the main code: {e}")

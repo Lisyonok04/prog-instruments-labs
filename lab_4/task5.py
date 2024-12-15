@@ -2,9 +2,9 @@ import os
 import logging
 from typing import List
 
-# Настройка логирования
+
 logging.basicConfig(
-    filename="app.log",
+    filename="logging.txt",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -18,9 +18,9 @@ class Iterator:
         try:
             self.data: List[str] = os.listdir(os.path.join(dir, class_name))
             self.limit: int = len(self.data)
-            logging.info(f"Инициализирован итератор для класса {class_name}")
+            logging.info(f"The iterator for the {class_name} class has been initialized")
         except Exception as e:
-            logging.error(f"Ошибка при инициализации итератора для класса {class_name}: {e}")
+            logging.error(f"Error initializing the iterator for the class {class_name}: {e}")
 
     def __next__(self):
         try:
@@ -29,13 +29,13 @@ class Iterator:
                     "dataset", self.class_name, self.data[self.counter]
                 )
                 self.counter += 1
-                logging.info(f"Возвращен путь {path}")
+                logging.info(f"Path returned {path}")
                 return path
             else:
-                logging.info(f"Достигнут конец итерации для класса {self.class_name}")
+                logging.info(f"The end of the iteration for the {self.class_name} class has been reached")
                 raise StopIteration
         except Exception as e:
-            logging.error(f"Ошибка при итерации для класса {self.class_name}: {e}")
+            logging.error(f"Error during iteration for the {self.class_name} class: {e}")
             raise StopIteration
 
 
@@ -51,4 +51,4 @@ if __name__ == "__main__":
         for _ in range(5):
             print(next(class_name))
     except Exception as e:
-        logging.error(f"Ошибка при выполнении основного кода: {e}")
+        logging.error(f"Error when executing the main code: {e}")

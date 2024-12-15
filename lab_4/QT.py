@@ -21,9 +21,9 @@ import task2
 import task3
 from task5 import Iterator
 
-# Настройка логирования
+
 logging.basicConfig(
-    filename="app.log",
+    filename="logging.txt",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -38,7 +38,7 @@ class Interface(QWidget):
         try:
             self.initUI()
         except Exception as e:
-            logging.error(f"Ошибка при инициализации интерфейса: {e}")
+            logging.error(f"Error initializing the interface: {e}")
 
     def initUI(self) -> None:
         """
@@ -126,9 +126,9 @@ class Interface(QWidget):
             self.setStyleSheet(
                 "background: rgb(220, 208, 255); font: 10pt Comic Sans MS")
             self.setWindowIcon(QIcon("Windowrose.jpg"))
-            logging.info("Интерфейс инициализирован успешно")
+            logging.info("The interface has been initialized successfully")
         except Exception as e:
-            logging.error(f"Ошибка при инициализации интерфейса: {e}")
+            logging.error(f"Error initializing the interface: {e}")
 
     def messagebox(self, text: str) -> None:
         """
@@ -145,9 +145,9 @@ class Interface(QWidget):
             vbox.addWidget(btn)
             btn.clicked.connect(dlg.close)
             dlg.exec()
-            logging.info(f"Показано сообщение: {text}")
+            logging.info(f"The message is shown: {text}")
         except Exception as e:
-            logging.error(f"Ошибка при показе сообщения: {e}")
+            logging.error(f"Error when displaying the message: {e}")
 
     def getdataset(self) -> None:
         """
@@ -165,7 +165,7 @@ class Interface(QWidget):
             else:
                 self.messagebox("Incorrect path")
         except Exception as e:
-            logging.error(f"Ошибка при получении датасета: {e}")
+            logging.error(f"Error receiving the dataset: {e}")
 
     def iter(self) -> None:
         """
@@ -174,9 +174,9 @@ class Interface(QWidget):
         try:
             self.rose: Iterator = Iterator("rose", self.dirlist)
             self.tulip: Iterator = Iterator("tulip", self.dirlist)
-            logging.info("Итераторы для rose и tulip созданы успешно")
+            logging.info("Iterators have been created successfully")
         except Exception as e:
-            logging.error(f"Ошибка при создании итераторов: {e}")
+            logging.error(f"Error when creating iterators: {e}")
 
     def select(self) -> str:
         """
@@ -186,7 +186,7 @@ class Interface(QWidget):
             dirlist: str = QFileDialog.getExistingDirectory(self, "Select Folder")
             return dirlist
         except Exception as e:
-            logging.error(f"Ошибка при выборе папки: {e}")
+            logging.error(f"Error when selecting a folder: {e}")
             return ""
 
     def create_csv(self) -> None:
@@ -203,7 +203,7 @@ class Interface(QWidget):
             else:
                 self.messagebox("Incorrect path")
         except Exception as e:
-            logging.error(f"Ошибка при создании аннотации: {e}")
+            logging.error(f"Error when creating an annotation: {e}")
 
     def copy(self) -> None:
         """
@@ -220,7 +220,7 @@ class Interface(QWidget):
             else:
                 self.messagebox("Incorrect path")
         except Exception as e:
-            logging.error(f"Ошибка при копировании датасета: {e}")
+            logging.error(f"Error copying the dataset: {e}")
 
     def random(self) -> None:
         """
@@ -237,7 +237,7 @@ class Interface(QWidget):
             else:
                 self.messagebox("The folder is incorrectly selected.")
         except Exception as e:
-            logging.error(f"Ошибка при создании рандомного датасета: {e}")
+            logging.error(f"Error when creating a random dataset: {e}")
 
     def next_rose(self) -> None:
         """
@@ -254,7 +254,7 @@ class Interface(QWidget):
                 self.iter()
                 self.next_rose()
         except Exception as e:
-            logging.error(f"Ошибка при отображении следующей розы: {e}")
+            logging.error(f"Error when displaying the next rose image: {e}")
 
     def next_tulip(self) -> None:
         """
@@ -271,7 +271,7 @@ class Interface(QWidget):
                 self.iter()
                 self.next_tulip()
         except Exception as e:
-            logging.error(f"Ошибка при отображении следующего тюльпана: {e}")
+            logging.error(f"Error when displaying the next tulip:: {e}")
 
 def main() -> None:
     """
@@ -283,7 +283,7 @@ def main() -> None:
         ex.show()
         sys.exit(app.exec())
     except Exception as e:
-        logging.error(f"Ошибка при запуске приложения: {e}")
+        logging.error(f"Error when launching the application: {e}")
 
 if __name__ == "__main__":
     main()
